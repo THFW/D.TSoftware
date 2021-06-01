@@ -16,13 +16,19 @@ int func(const char* s)
     return strlen(s);
 }
 
+typedef int(*PFUNC)(int a);
+
 
 int main(int argc, char *argv[])
 {
-    printf("%d\n", func(3));
-    printf("%d\n", func(4, 5));
-    printf("%d\n", func("D.T.Software"));
+    int c = 0;
+
+    PFUNC p = func;
+        
+    c = p(1);   
     
+    printf("c = %d\n", c);
+
     return 0;
 }
 
