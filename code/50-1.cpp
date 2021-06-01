@@ -3,55 +3,65 @@
 
 using namespace std;
 
-class A
+class Demo
 {
-    int i;
-    int j;
-    char c;
-    double d;
+protected:
+    int mi;
+    int mj;
 public:
-    void print()
+    virtual void print()
     {
-        cout << "i = " << i << ", "
-             << "j = " << j << ", "
-             << "c = " << c << ", "
-             << "d = " << d << endl;
+        cout << "mi = " << mi << ", "
+             << "mj = " << mj << endl;
     }
 };
 
-struct B
+class Derived : public Demo
 {
-    int i;
-    int j;
-    char c;
-    double d;
+    int mk;
+public:
+    Derived(int i, int j, int k)
+    {
+        mi = i;
+        mj = j;
+        mk = k;
+    }
+    
+    void print()
+    {
+        cout << "mi = " << mi << ", "
+             << "mj = " << mj << ", "
+             << "mk = " << mk << endl;
+    }
+};
+
+struct Test
+{
+    void* p;
+    int mi;
+    int mj;
+    int mk;
 };
 
 int main()
 {
-    A a;
+    cout << "sizeof(Demo) = " << sizeof(Demo) << endl;         
+    cout << "sizeof(Derived) = " << sizeof(Derived) << endl;  
     
-    cout << "sizeof(A) = " << sizeof(A) << endl;    // 20 bytes
-    cout << "sizeof(a) = " << sizeof(a) << endl;
-    cout << "sizeof(B) = " << sizeof(B) << endl;    // 20 bytes
+    Derived d(1, 2, 3);
+    Test* p = reinterpret_cast<Test*>(&d);
     
-    a.print();
+    cout << "Before changing ..." << endl;
     
-    B* p = reinterpret_cast<B*>(&a);
+    d.print();
     
-    p->i = 1;
-    p->j = 2;
-    p->c = 'c';
-    p->d = 3;
+    p->mi = 10;
+    p->mj = 20;
+    p->mk = 30;
     
-    a.print();
+    cout << "After changing ..." << endl;
     
-    p->i = 100;
-    p->j = 200;
-    p->c = 'C';
-    p->d = 3.14;
-    
-    a.print();
+    d.print();
     
     return 0;
 }

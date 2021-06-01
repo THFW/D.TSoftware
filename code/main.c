@@ -1,17 +1,26 @@
-#include <stdio.h>
-#include "50-2.h"
+#include "stdio.h"
+#include "51-2.h"
+
+void run(Demo* p, int v)
+{
+    int r = Demo_Add(p, v);
+    
+    printf("r = %d\n", r);
+}
 
 int main()
 {
-    Demo* d = Demo_Create(1, 2);             // Demo* d = new Demo(1, 2);
+    Demo* pb = Demo_Create(1, 2);
+    Derived* pd = Derived_Create(1, 22, 333);
     
-    printf("d.mi = %d\n", Demo_GetI(d));     // d->getI();
-    printf("d.mj = %d\n", Demo_GetJ(d));     // d->getJ();
-    printf("Add(3) = %d\n", Demo_Add(d, 3));    // d->add(3);
+    printf("pb->add(3) = %d\n", Demo_Add(pb, 3));
+    printf("pd->add(3) = %d\n", Derived_Add(pd, 3));
     
-    // d->mi = 100;
+    run(pb, 3);
+    run(pd, 3);
     
-    Demo_Free(d);
+    Demo_Free(pb);
+    Demo_Free(pd);
     
     return 0;
 }
