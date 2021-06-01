@@ -6,19 +6,7 @@ using namespace std;
 class Parent
 {
 public:
-    int mi;
-    
-    void add(int i)
-    {
-        mi += i;
-    }
-    
-    void add(int a, int b)
-    {
-        mi += (a + b);
-    }
-    
-    void print()
+    virtual void print()
     {
         cout << "I'm Parent." << endl;
     }
@@ -27,13 +15,6 @@ public:
 class Child : public Parent
 {
 public:
-    int mv;
-    
-    void add(int x, int y, int z)
-    {
-        mv += (x + y + z);
-    }
-    
     void print()
     {
         cout << "I'm Child." << endl;
@@ -42,7 +23,7 @@ public:
 
 void how_to_print(Parent* p)
 {
-    p->print();
+    p->print();     // 展现多态的行为
 }
 
 int main()
