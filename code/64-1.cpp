@@ -3,7 +3,7 @@
 
 using namespace std;
 
-double divide(double a, double b, int* valid)
+double divide(double a, double b)
 {
     const double delta = 0.000000000000001;
     double ret = 0;
@@ -11,27 +11,24 @@ double divide(double a, double b, int* valid)
     if( !((-delta < b) && (b < delta)) )
     {
         ret = a / b;
-        
-        *valid = 1;
     }
     else
     {
-        *valid = 0;
+        throw 0;
     }
     
     return ret;
 }
 
 int main(int argc, char *argv[])
-{   
-    int valid = 0;
-    double r = divide(1, 0, &valid);
-    
-    if( valid )
+{    
+    try
     {
+        double r = divide(1, 0);
+            
         cout << "r = " << r << endl;
     }
-    else
+    catch(...)
     {
         cout << "Divided by zero..." << endl;
     }
