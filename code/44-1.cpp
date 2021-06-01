@@ -5,34 +5,30 @@ using namespace std;
 
 class Parent
 {
+private:
     int mv;
 public:
     Parent()
     {
-        cout << "Parent()" << endl;
         mv = 100;
     }
-    void method()
+    
+    int value()
     {
-        cout << "mv = " << mv << endl;
+        return mv;
     }
 };
 
 class Child : public Parent
 {
 public:
-    void hello()
+    int addValue(int v)
     {
-        cout << "I'm Child calss!" << endl;
+        mv = mv + v;    // ???? 如何访问父类的非公有成员
     }
 };
 
 int main()
 {   
-    Child c;
-    
-    c.hello();
-    c.method();
-    
     return 0;
 }
