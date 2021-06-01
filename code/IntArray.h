@@ -8,6 +8,7 @@ private:
     int* m_pointer;
 public:
     IntArray(int len);
+    IntArray(const IntArray& obj);
     int length();
     bool get(int index, int& value);
     bool set(int index ,int value);

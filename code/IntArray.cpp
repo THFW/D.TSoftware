@@ -12,6 +12,18 @@ IntArray::IntArray(int len)
     m_length = len;
 }
 
+IntArray::IntArray(const IntArray& obj)
+{
+    m_length = obj.m_length;
+    
+    m_pointer = new int[obj.m_length];
+    
+    for(int i=0; i<obj.m_length; i++)
+    {
+        m_pointer[i] = obj.m_pointer[i];
+    }
+}
+
 int IntArray::length()
 {
     return m_length;
